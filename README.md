@@ -1,0 +1,3 @@
+# README Bachelor Thesis: 
+
+## Description
