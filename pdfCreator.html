@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LaTeX to PDF</title>
+</head>
+<body>
+    <h1>Generate PDF from LaTeX</h1>
+    <script>
+fetch('https://latexonline.cc/compile?text=%5Cdocumentclass%7Barticle%7D%0A%5Cbegin%7Bdocument%7D%0AHello%2C%20world!%0A%5Cend%7Bdocument%7D')
+    .catch(error => console.error('Error:', error));  
+    </script>
+               
+</body>
+</html>
