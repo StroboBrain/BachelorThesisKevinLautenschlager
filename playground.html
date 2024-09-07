@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Worksheet Generator</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/katex.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/katex.min.css">
+</head>
+<body>
+    <form id="worksheetForm">
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title"><br><br>
+        <label for="content">Content:</label>
+        <textarea id="content" name="content"></textarea><br><br>
+        <button type="button" onclick="generatePDF()">Generate PDF</button>
+    </form>
+    <div id="preview"></div>
+    <script>
+        async function generatePDF() {
+            const { PDFDocument, rgb } = PDFLib;
+            const title = document.getElementById('title').value;
+            const content = document.getElementById('content').value;
+
+            const pdfDoc = await PDFDocument.create();
+            const page = pdfDoc.addPage([600, 800]);
+            const { width, height } = page.getSize();
+            const fontSize = 24;
+
+            page.drawText(title, {
+                x: 50,
+                y: height - 4 * fontSize,
+                size: fontSize,
+                color: rgb(0, 0, 0),
+            });
+
+            page.drawText(content, {
+                x: 50,
+                y: height - 6 * fontSize,
+                size: fontSize,
+                color: rgb(0, 0, 0),
+            });
+
+            const pdfBytes = await pdfDoc.save();
+            const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'worksheet.pdf';
+            link.click();
+        }
+
+        function renderLatex() {
+            const content = document.getElementById('content').value;
+            const renderedContent = katex.renderToString(content, {
+                throwOnError: false
+            });
+            document.getElementById('preview').innerHTML = renderedContent;
+        }
+
+        document.getElementById('content').addEventListener('input', renderLatex);
+    </script>
+</body>
+</html>
