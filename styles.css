@@ -8,22 +8,37 @@ body {
     background-color: #f0f0f0;
 }
 
-.button-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
+.container {
+    text-align: center;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.selectable {
+textarea {
+    width: 100%;
+    height: 100px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
     padding: 10px 20px;
-    border: 2px solid #007BFF;
-    background-color: white;
-    color: #007BFF;
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
-}
-
-.selectable.selected {
+    border: none;
     background-color: #007BFF;
     color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 5px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#output {
+    margin-top: 20px;
 }

@@ -1,16 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LaTeX to PDF</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KaTeX Example</title>
+  <link rel="stylesheet" href="katex.min.css">
+  <script defer src="katex.min.js"></script>
+  <script defer src="auto-render.min.js" onload="renderMathInElement(document.body);"></script>
 </head>
 <body>
-    <h1>Generate PDF from LaTeX</h1>
-    <script>
-fetch('https://latexonline.cc/compile?text=%5Cdocumentclass%7Barticle%7D%0A%5Cbegin%7Bdocument%7D%0AHello%2C%20world!%0A%5Cend%7Bdocument%7D')
-    .catch(error => console.error('Error:', error));  
-    </script>
-               
+  <div id="latex-content">
+    $$c = \pm\sqrt{a^2 + b^2}$$
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      var element = document.getElementById('latex-content');
+      katex.render("c = \\pm\\sqrt{a^2 + b^2}", element, {
+        throwOnError: false
+      });
+    });
+  </script>
 </body>
 </html>
