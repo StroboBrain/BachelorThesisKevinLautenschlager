@@ -3,21 +3,41 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>KaTeX Example</title>
+  <title>KaTeX Dynamic Input</title>
   <link rel="stylesheet" href="katex.min.css">
   <script defer src="katex.min.js"></script>
   <script defer src="auto-render.min.js" onload="renderMathInElement(document.body);"></script>
 </head>
 <body>
-  <div id="latex-content">
-    $$c = \pm\sqrt{a^2 + b^2}$$
-  </div>
+  <h1>Enter LaTeX Code</h1>
+
+  <!-- Textarea for LaTeX input -->
+  <textarea id="latex-input" rows="4" cols="50">c = \pm\sqrt{a^2 + b^2}</textarea>
+  
+  <!-- Button to render LaTeX -->
+  <button id="render-button">Render LaTeX</button>
+
+  <!-- Container for displaying the rendered LaTeX -->
+  <div id="latex-content"></div>
+
   <script>
-    document.addEventListener("DOMContentLoaded", function() {
+    function renderLatex() {
+      // Get LaTeX input from the textarea
+      var latexInput = document.getElementById('latex-input').value;
+
+      // Render the LaTeX code using KaTeX
       var element = document.getElementById('latex-content');
-      katex.render("c = \\pm\\sqrt{a^2 + b^2}", element, {
+      katex.render(latexInput, element, {
         throwOnError: false
       });
+    }
+
+    // Render LaTeX when the button is clicked
+    document.getElementById('render-button').addEventListener('click', renderLatex);
+
+    // Initial render for the default content
+    document.addEventListener("DOMContentLoaded", function() {
+      renderLatex();
     });
   </script>
 </body>
